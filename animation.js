@@ -8,8 +8,12 @@ const weatherIcon = document.querySelector(".weather-icon")
             let data = await response.json()
             console.log(data)
           if(data.cod=="404"){
-           document.querySelector(".city").innerHTML = data.message
+
+           document.querySelector(".error").style.display = "block"
+           document.querySelector(".weather").style.display = "none"
+         
           }else{
+            document.querySelector(".error").style.display = "none"
             document.querySelector(".weather").style.display = "block" 
             document.querySelector(".city").innerHTML = data.name;
           document.querySelector(".temp").innerHTML = data.main.temp+'°c';//math.round()
@@ -27,9 +31,9 @@ const weatherIcon = document.querySelector(".weather-icon")
                 weatherIcon.src = "images/drizzle.png"
             }else if(data.weather[0].main=="Mist"){
                 weatherIcon.src = "images/mist.png"
-            }else if(data.weather[0].main=="Clouds"){
+            }/*else if(data.weather[0].main=="Clouds"){
                 weatherIcon.src = "images/snow.png"
-            }
+            }*/
 
         }
         searchBtn.addEventListener("click",()=>{
